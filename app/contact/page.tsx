@@ -1,32 +1,64 @@
 'use client'
 
+import { useForm } from '@tanstack/react-form'
+import { zodValidator } from '@tanstack/zod-form-adapter'
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { ArrowLeft, Mail, Phone, MapPin, Clock } from 'lucide-react'
+import { ArrowLeft, Mail, Phone, MapPin, Clock, Loader2 } from 'lucide-react'
 import Link from 'next/link'
+import { contactFormSchema } from '@/lib/validations'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submitMessage, setSubmitMessage] = useState('')
+
+  const form = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      message: ''
+    },
+    onSubmit: async ({ value }) => {
+      setIsSubmitting(true)
+      setSubmitStatus('idle')
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(value),
+        })
+
+        const data = await response.json()
+
+        if (response.ok) {
+          setSubmitStatus('success')
+          setSubmitMessage(data.message)
+          form.reset()
+        } else {
+          setSubmitStatus('error')
+          setSubmitMessage(data.error || 'An error occurred. Please try again.')
+        }
+      } catch {
+        setSubmitStatus('error')
+        setSubmitMessage('Network error. Please try again.')
+      } finally {
+        setIsSubmitting(false)
+      }
+    },
+    validatorAdapter: zodValidator(),
+    validators: {
+      onChange: contactFormSchema,
+      onSubmit: contactFormSchema,
+    },
   })
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-    alert('Thank you for your message! I will get back to you soon.')
-    setFormData({ name: '', email: '', phone: '', message: '' })
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -125,73 +157,144 @@ export default function Contact() {
                 <CardTitle>Send Me a Message</CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    form.handleSubmit()
+                  }}
+                  className="space-y-6"
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Name *
-                      </label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Your full name"
-                      />
+                      <form.Field name="name">
+                        {(field) => (
+                          <div>
+                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                              Name *
+                            </label>
+                            <Input
+                              id="name"
+                              name={field.name}
+                              type="text"
+                              required
+                              value={field.state.value}
+                              onChange={(e) => field.handleChange(e.target.value)}
+                              placeholder="Your full name"
+                            />
+                            {field.state.meta.errors.length > 0 && (
+                              <p className="text-red-500 text-sm mt-1">
+                                {field.state.meta.errors[0]}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </form.Field>
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email *
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="your.email@example.com"
-                      />
+                      <form.Field name="email">
+                        {(field) => (
+                          <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                              Email *
+                            </label>
+                            <Input
+                              id="email"
+                              name={field.name}
+                              type="email"
+                              required
+                              value={field.state.value}
+                              onChange={(e) => field.handleChange(e.target.value)}
+                              placeholder="your.email@example.com"
+                            />
+                            {field.state.meta.errors.length > 0 && (
+                              <p className="text-red-500 text-sm mt-1">
+                                {field.state.meta.errors[0]}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </form.Field>
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="(555) 123-4567"
-                    />
+                    <form.Field name="phone">
+                      {(field) => (
+                        <div>
+                          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                            Phone Number
+                          </label>
+                          <Input
+                            id="phone"
+                            name={field.name}
+                            type="tel"
+                            value={field.state.value}
+                            onChange={(e) => field.handleChange(e.target.value)}
+                            placeholder="(555) 123-4567"
+                          />
+                          {field.state.meta.errors.length > 0 && (
+                            <p className="text-red-500 text-sm mt-1">
+                              {field.state.meta.errors[0]}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </form.Field>
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      required
-                      rows={6}
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Tell me about your hair goals, desired services, or ask any questions you might have..."
-                    />
+                    <form.Field name="message">
+                      {(field) => (
+                        <div>
+                          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                            Message *
+                          </label>
+                          <Textarea
+                            id="message"
+                            name={field.name}
+                            required
+                            rows={6}
+                            value={field.state.value}
+                            onChange={(e) => field.handleChange(e.target.value)}
+                            placeholder="Tell me about your hair goals, desired services, or ask any questions you might have..."
+                          />
+                          {field.state.meta.errors.length > 0 && (
+                            <p className="text-red-500 text-sm mt-1">
+                              {field.state.meta.errors[0]}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </form.Field>
                   </div>
+
+                  {submitStatus === 'success' && (
+                    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                      <p className="text-green-800">{submitMessage}</p>
+                    </div>
+                  )}
+
+                  {submitStatus === 'error' && (
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <p className="text-red-800">{submitMessage}</p>
+                    </div>
+                  )}
 
                   <Button 
                     type="submit" 
                     size="lg" 
                     className="w-full bg-purple-600 hover:bg-purple-700"
+                    disabled={isSubmitting}
                   >
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      'Send Message'
+                    )}
                   </Button>
                 </form>
 
