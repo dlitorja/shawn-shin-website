@@ -1,103 +1,60 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *)) {
-  @layer base {
-    * {
-      @apply border-border outline-ring/50;
-    }
-    body {
-      color-scheme: dark;
-      @apply bg-background text-foreground;
-    }
-  }
+/* Dark theme with emerald accents */
+:root {
+  --background: 224 71% 4%;
+  --foreground: 213 31% 91%;
+  --card: 224 71% 4%;
+  --card-foreground: 213 31% 91%;
+  --popover: 224 71% 4%;
+  --popover-foreground: 213 31% 91%;
+  --primary: 74 222% 16%;
+  --primary-foreground: 213 31% 91%;
+  --secondary: 215 27% 84%;
+  --secondary-foreground: 213 31% 91%;
+  --muted: 215 27% 84%;
+  --muted-foreground: 217 2 90%;
+  --accent: 215 27% 84%;
+  --accent-foreground: 213 31% 91%;
+  --destructive: 0 84% 60%;
+  --border: 215 27% 84%;
+  --input: 215 27% 84%;
+  --ring: 74 222% 16%;
 }
 
-@layer base {
-  :root {
-    --radius: 0.375rem;
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 74 222% 16%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 74 222% 16%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 217 71% 60%;
-    --chart-3: 212 71% 64%;
-    --chart-4: 63 71% 65%;
-    --chart-5: 32 75% 60%;
-    --sidebar: 222.2 84% 4.9%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 74 222% 16%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 217.2 32.6% 17.5%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 74 222% 16%;
-  }
-
-  .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
-    --popover: 224 71% 4%;
-    --popover-foreground: 213 31% 91%;
-    --primary: 142 76% 36%;
-    --primary-foreground: 224 71% 4%;
-    --secondary: 215 27.9% 84.9%;
-    --secondary-foreground: 213 31% 91%;
-    --muted: 215 27.9% 84.9%;
-    --muted-foreground: 217.2 90% 88.5%;
-    --accent: 215 27.9% 84.9%;
-    --accent-foreground: 213 31% 91%;
-    --destructive: 0 84.2% 60.2%;
-    --border: 215 27.9% 84.9%;
-    --input: 215 27.9% 84.9%;
-    --ring: 142 76% 36%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 217 71% 60%;
-    --chart-3: 212 71% 64%;
-    --chart-4: 63 71% 65%;
-    --chart-5: 32 75% 60%;
-    --sidebar: 224 71% 4%;
-    --sidebar-foreground: 213 31% 91%;
-    --sidebar-primary: 142 76% 36%;
-    --sidebar-primary-foreground: 224 71% 4%;
-    --sidebar-accent: 215 27.9% 84.9%;
-    --sidebar-accent-foreground: 213 31% 91%;
-    --sidebar-border: 215 27.9% 84.9%;
-    --sidebar-ring: 142 76% 36%;
-  }
-
-  @layer base {
-    * {
-      @apply border-border outline-ring/50;
-    }
-    body {
-      color-scheme: dark;
-      @apply bg-background text-foreground;
-    }
-  }
+body {
+  color-scheme: dark;
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-family: var(--font-raleway), sans-serif;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+/* Component styles using emerald accents */
+.emerald-primary {
+  background-color: rgb(var(--primary));
+  color: rgb(var(--primary-foreground));
+}
+
+.emerald-secondary {
+  background-color: rgb(var(--secondary));
+  color: rgb(var(--secondary-foreground));
+}
+
+.stone-card {
+  background-color: rgb(var(--card));
+  color: rgb(var(--card-foreground));
+  border: 1px solid rgb(var(--border));
+}
+
+/* Basic utility classes */
+.ring-emerald {
+  outline: 2px solid rgb(var(--ring));
+}
+
+.emerald-text {
+  color: rgb(var(--primary));
+}
+
+.stone-text {
+  color: rgb(var(--foreground));
 }

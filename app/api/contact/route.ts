@@ -1,44 +1,15 @@
-import { contactFormAj } from '@/lib/arcjet'
-import { sendContactEmail, sendConfirmationEmail } from '@/lib/email'
-import { db } from '@/lib/db'
-import { contactMessages } from '@/lib/schema'
-import { contactFormSchema } from '@/lib/validations'
 import { NextRequest, NextResponse } from 'next/server'
 import { headers } from 'next/headers'
+import { contactFormSchema } from '@/lib/validations'
+import { db } from '@/lib/db'
+import { contactMessages } from '@/lib/schema'
 
 export async function POST(request: NextRequest) {
   try {
-    // Get client IP and user agent for security
+    // Get client IP for security
     const headersList = headers()
-    const ip = request.ip || headersList.get('x-forwarded-for') || 'unknown'
-    const userAgent = headersList.get('user-agent') || 'unknown'
-
-    // Apply ArcJet security protection
-    const decision = await contactFormAj.protect(request, {
-      ip,
-      userAgent,
-    })
-
-    if (decision.isDenied()) {
-      if (decision.reason.isRateLimit()) {
-        return NextResponse.json(
-          { error: 'Too many requests. Please try again later.' },
-          { status: 429 }
-        )
-      }
-      
-      if (decision.reason.isBot()) {
-        return NextResponse.json(
-          { error: 'Bot activity detected. Request blocked.' },
-          { status: 403 }
-        )
-      }
-
-      return NextResponse.json(
-        { error: 'Request blocked by security policy.' },
-        { status: 403 }
-      )
-    }
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+    const userAgent = request.headers.get('user-agent') || 'unknown'
 
     // Parse and validate request body
     const body = await request.json()
@@ -54,35 +25,6 @@ export async function POST(request: NextRequest) {
       userAgent: userAgent,
       status: 'pending',
     })
-
-    // Send email notifications
-    try {
-      // Send notification to Shawn
-      await sendContactEmail(validatedData)
-      
-      // Send confirmation to customer
-      await sendConfirmationEmail({
-        email: validatedData.email,
-        name: validatedData.name,
-      })
-
-      // Update message status to sent
-      await db
-        .update(contactMessages)
-        .set({ status: 'sent' })
-        .where(
-          // Note: This would typically use a where clause with the inserted ID
-          // For simplicity, we're updating the most recent record
-          db
-            .select()
-            .from(contactMessages)
-            .orderBy(contactMessages.createdAt)
-            .limit(1)
-        )
-    } catch (emailError) {
-      console.error('Failed to send emails:', emailError)
-      // Don't fail the request if email fails, but log it
-    }
 
     return NextResponse.json(
       { 

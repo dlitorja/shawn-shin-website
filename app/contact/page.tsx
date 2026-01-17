@@ -1,7 +1,5 @@
 'use client'
 
-import { useForm } from '@tanstack/react-form'
-import { zodValidator } from '@tanstack/zod-form-adapter'
 import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -9,56 +7,59 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { ArrowLeft, Mail, Phone, MapPin, Clock, Loader2 } from 'lucide-react'
 import Link from 'next/link'
-import { contactFormSchema } from '@/lib/validations'
 
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submitMessage, setSubmitMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [submitMessage, setSubmitMessage] = useState('')
 
-  const form = useForm({
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    },
-    onSubmit: async ({ value }) => {
-      setIsSubmitting(true)
-      setSubmitStatus('idle')
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
 
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(value),
-        })
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
 
-        const data = await response.json()
+      const data = await response.json()
 
-        if (response.ok) {
-          setSubmitStatus('success')
-          setSubmitMessage(data.message)
-          form.reset()
-        } else {
-          setSubmitStatus('error')
-          setSubmitMessage(data.error || 'An error occurred. Please try again.')
-        }
-      } catch {
+      if (response.ok) {
+        setSubmitStatus('success')
+        setSubmitMessage(data.message)
+        setFormData({ name: '', email: '', phone: '', message: '' })
+      } else {
         setSubmitStatus('error')
-        setSubmitMessage('Network error. Please try again.')
+        setSubmitMessage(data.error || 'An error occurred. Please try again.')
+      }
+    } catch {
+      setSubmitStatus('error')
+      setSubmitMessage('Network error. Please try again.')
       } finally {
         setIsSubmitting(false)
       }
-    },
-    validatorAdapter: zodValidator(),
-    validators: {
-      onChange: contactFormSchema,
-      onSubmit: contactFormSchema,
-    },
-  })
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -110,7 +111,7 @@ export default function Contact() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">hello@shawnshin.com</p>
+                <p className="text-gray-600">hello@shawn-legend.com</p>
                 <p className="text-sm text-gray-500 mt-1">
                   Email for consultations and general inquiries
                 </p>
@@ -157,62 +158,95 @@ export default function Contact() {
                 <CardTitle>Send Me a Message</CardTitle>
               </CardHeader>
               <CardContent>
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    form.handleSubmit()
-                  }}
-                  className="space-y-6"
-                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <form.Field name="name">
-                        {(field) => (
-                          <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                              Name *
-                            </label>
-                            <Input
-                              id="name"
-                              name={field.name}
-                              type="text"
-                              required
-                              value={field.state.value}
-                              onChange={(e) => field.handleChange(e.target.value)}
-                              placeholder="Your full name"
-                            />
-                            {field.state.meta.errors.length > 0 && (
-                              <p className="text-red-500 text-sm mt-1">
-                                {field.state.meta.errors[0]}
-                              </p>
-                            )}
-                          </div>
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                          Name *
+                        </label>
+                        <Input
+                          id="name"
+                          name="name"
+                          type="text"
+                          required
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Your full name"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                          Email *
+                        </label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                          Phone Number
+                        </label>
+                        <Input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          placeholder="(555) 123-4567"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div>
+                        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                          Message *
+                        </label>
+                        <Textarea
+                          id="message"
+                          name="message"
+                          required
+                          rows={6}
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          placeholder="Tell me about your hair goals, desired services, or ask any questions you might have..."
+                        />
+                      </div>
+                    </div>
+                  </div>
                         )}
                       </form.Field>
                     </div>
                     <div>
                       <form.Field name="email">
                         {(field) => (
-                          <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                              Email *
-                            </label>
-                            <Input
-                              id="email"
-                              name={field.name}
-                              type="email"
-                              required
-                              value={field.state.value}
-                              onChange={(e) => field.handleChange(e.target.value)}
-                              placeholder="your.email@example.com"
-                            />
-                            {field.state.meta.errors.length > 0 && (
-                              <p className="text-red-500 text-sm mt-1">
-                                {field.state.meta.errors[0]}
-                              </p>
-                            )}
-                          </div>
+                    <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Email *
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
                         )}
                       </form.Field>
                     </div>
@@ -221,24 +255,19 @@ export default function Contact() {
                   <div>
                     <form.Field name="phone">
                       {(field) => (
-                        <div>
-                          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                            Phone Number
-                          </label>
-                          <Input
-                            id="phone"
-                            name={field.name}
-                            type="tel"
-                            value={field.state.value}
-                            onChange={(e) => field.handleChange(e.target.value)}
-                            placeholder="(555) 123-4567"
-                          />
-                          {field.state.meta.errors.length > 0 && (
-                            <p className="text-red-500 text-sm mt-1">
-                              {field.state.meta.errors[0]}
-                            </p>
-                          )}
-                        </div>
+                    <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                      Phone Number
+                    </label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="(555) 123-4567"
+                    />
+                  </div>
                       )}
                     </form.Field>
                   </div>
@@ -246,25 +275,20 @@ export default function Contact() {
                   <div>
                     <form.Field name="message">
                       {(field) => (
-                        <div>
-                          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                            Message *
-                          </label>
-                          <Textarea
-                            id="message"
-                            name={field.name}
-                            required
-                            rows={6}
-                            value={field.state.value}
-                            onChange={(e) => field.handleChange(e.target.value)}
-                            placeholder="Tell me about your hair goals, desired services, or ask any questions you might have..."
-                          />
-                          {field.state.meta.errors.length > 0 && (
-                            <p className="text-red-500 text-sm mt-1">
-                              {field.state.meta.errors[0]}
-                            </p>
-                          )}
-                        </div>
+                    <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message *
+                    </label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={6}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Tell me about your hair goals, desired services, or ask any questions you might have..."
+                    />
+                  </div>
                       )}
                     </form.Field>
                   </div>
