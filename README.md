@@ -69,7 +69,7 @@ A modern, secure, and responsive website for professional hair stylist Shawn Shi
 
 ### Prerequisites
 - Node.js 20.9+
-- npm, yarn, or pnpm
+- pnpm (recommended), npm, or yarn
 
 ### Installation
 
@@ -81,7 +81,9 @@ A modern, secure, and responsive website for professional hair stylist Shawn Shi
 
 2. **Install dependencies**
    ```bash
-   npm install
+   pnpm install
+   # or npm install
+   # or yarn install
    ```
 
 3. **Set up environment variables**
@@ -191,20 +193,20 @@ A modern, secure, and responsive website for professional hair stylist Shawn Shi
 
 ```bash
 # Development
-npm run dev          # Start development server
+pnpm run dev          # Start development server
 
 # Building
-npm run build        # Build for production
-npm run start        # Start production server
+pnpm run build        # Build for production
+pnpm run start        # Start production server
 
 # Database
-npm run db:generate  # Generate database migrations
-npm run db:push      # Push schema to database
-npm run db:studio    # Open Drizzle Studio
+pnpm run db:generate  # Generate database migrations
+pnpm run db:push      # Push schema to database
+pnpm run db:studio    # Open Drizzle Studio
 
 # Code Quality
-npm run lint         # Run ESLint
-npm run lint:fix     # Fix linting issues
+pnpm run lint         # Run ESLint
+pnpm run lint:fix     # Fix linting issues
 ```
 
 ## 📦 Dependencies

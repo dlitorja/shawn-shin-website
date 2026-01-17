@@ -1,0 +1,23 @@
+# pnpm configuration for Shawn Shin Website
+# Ensures consistent and reproducible dependency management
+
+# Use exact versions for reproducible builds
+save-exact=true
+
+# Always resolve peer dependencies
+strict-peer-dependencies=true
+
+# Prevent auto-installation of peer dependencies
+auto-install-peers=false
+
+# Use shamefully-hoist for better compatibility with Next.js
+shamefully-hoist=true
+
+# Prefer @types versions for TypeScript
+prefer-workspace-packages=true
+
+# Enable deduplication for smaller node_modules
+dedupe=true
+
+# Prefer offline cache when available
+prefer-offline=true

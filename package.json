@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio"
   },
+  "packageManager": "pnpm@9.0.0",
   "dependencies": {
     "@arcjet/next": "^1.0.0-beta.17",
     "@radix-ui/react-dialog": "^1.1.15",
