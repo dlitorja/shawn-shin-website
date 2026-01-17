@@ -10,11 +10,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Shawn Shin - Professional Hair Stylist",
+  title: "Shawn Legend - Professional Hair Stylist",
   description: "Professional hair stylist with over 20 years of experience in cutting, styling, coloring, and more. View my portfolio and book your appointment today.",
   keywords: ["hair stylist", "hair cutting", "hair coloring", "salon", "beauty", "hair styling"],
   openGraph: {
-    title: "Shawn Shin - Professional Hair Stylist",
+    title: "Shawn Legend - Professional Hair Stylist",
     description: "Professional hair stylist with over 20 years of experience",
     type: "website",
   },

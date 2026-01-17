@@ -7,8 +7,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Scissors className="h-8 w-8 text-purple-400" />
-              <span className="text-xl font-bold">Shawn Shin</span>
+              <Scissors className="h-8 w-8 text-blue-400" />
+              <span className="text-xl font-bold">Shawn Legend</span>
             </div>
             <p className="text-gray-400">
               Professional hair stylist with over 20 years of experience in cutting, styling, coloring, and more.
@@ -24,7 +24,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>hello@shawnshin.com</span>
+                <span>hello@shawnlegend.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
@@ -44,7 +44,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; 2024 Shawn Shin. All rights reserved.</p>
+          <p>&copy; 2024 Shawn Legend. All rights reserved.</p>
         </div>
       </div>
     </footer>

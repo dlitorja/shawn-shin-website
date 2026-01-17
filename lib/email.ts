@@ -15,7 +15,7 @@ export async function sendContactEmail(data: {
       subject: `New Contact Form Submission from ${data.name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #7c3aed; margin-bottom: 20px;">New Contact Form Submission</h2>
+          <h2 style="color: #2563eb; margin-bottom: 20px;">New Contact Form Submission</h2>
           
           <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
             <h3 style="margin-top: 0;">Contact Information:</h3>
@@ -31,7 +31,7 @@ export async function sendContactEmail(data: {
           
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
             <p style="color: #6b7280; font-size: 14px;">
-              This message was sent from the contact form on Shawn Shin's website.
+              This message was sent from the contact form on Shawn Legend's website.
             </p>
           </div>
         </div>
@@ -58,10 +58,10 @@ export async function sendConfirmationEmail(data: {
     const { data: emailData, error } = await resend.emails.send({
       from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
       to: data.email,
-      subject: 'Thank you for contacting Shawn Shin',
+      subject: 'Thank you for contacting Shawn Legend',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #7c3aed; margin-bottom: 20px;">Thank You for Reaching Out!</h2>
+          <h2 style="color: #2563eb; margin-bottom: 20px;">Thank You for Reaching Out!</h2>
           
           <p>Hi ${data.name},</p>
           
@@ -76,7 +76,7 @@ export async function sendConfirmationEmail(data: {
             </ul>
           </div>
           
-          <div style="background: #7c3aed; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+          <div style="background: #2563eb; color: white; padding: 20px; border-radius: 8px; text-align: center;">
             <h3>Need to Reach Me Sooner?</h3>
             <p>Call me directly at (555) 123-4567 for immediate assistance.</p>
           </div>
@@ -84,7 +84,7 @@ export async function sendConfirmationEmail(data: {
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
             <p style="color: #6b7280; font-size: 14px;">
               Best regards,<br>
-              Shawn Shin<br>
+              Shawn Legend<br>
               Professional Hair Stylist
             </p>
           </div>

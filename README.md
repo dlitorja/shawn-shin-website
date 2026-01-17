@@ -1,6 +1,6 @@
-# Shawn Shin - Professional Hair Stylist Website
+# Shawn Legend - Professional Hair Stylist Website
 
-A modern, secure, and responsive website for professional hair stylist Shawn Shin with over 20 years of experience in cutting, styling, coloring, and more.
+A modern, secure, and responsive website for professional hair stylist Shawn Legend with over 20 years of experience in cutting, styling, coloring, and more.
 
 ## 🎯 Features
 
@@ -257,7 +257,7 @@ pnpm run lint:fix     # Fix linting issues
 
 ## 📝 License
 
-This project is private property of Shawn Shin. All rights reserved.
+This project is private property of Shawn Legend. All rights reserved.
 
 ## 📞 Support
 

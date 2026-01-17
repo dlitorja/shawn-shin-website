@@ -89,9 +89,9 @@ export default function Contact() {
           <div className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Phone className="h-5 w-5 text-purple-600" />
-                  <span>Phone</span>
+            <CardTitle className="flex items-center space-x-2">
+              <Phone className="h-5 w-5 text-blue-600" />
+              <span>Phone</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -104,9 +104,9 @@ export default function Contact() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Mail className="h-5 w-5 text-purple-600" />
-                  <span>Email</span>
+            <CardTitle className="flex items-center space-x-2">
+              <Mail className="h-5 w-5 text-blue-600" />
+              <span>Email</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -119,9 +119,9 @@ export default function Contact() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <MapPin className="h-5 w-5 text-purple-600" />
-                  <span>Location</span>
+            <CardTitle className="flex items-center space-x-2">
+              <MapPin className="h-5 w-5 text-blue-600" />
+              <span>Location</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -135,9 +135,9 @@ export default function Contact() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Clock className="h-5 w-5 text-purple-600" />
-                  <span>Hours</span>
+            <CardTitle className="flex items-center space-x-2">
+              <Clock className="h-5 w-5 text-blue-600" />
+              <span>Hours</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -284,7 +284,7 @@ export default function Contact() {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-purple-600 hover:bg-purple-700"
+                    className="w-full bg-blue-600 hover:bg-blue-700"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -298,8 +298,8 @@ export default function Contact() {
                   </Button>
                 </form>
 
-                <div className="mt-6 p-4 bg-purple-50 rounded-lg">
-                  <p className="text-sm text-purple-700">
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                  <p className="text-sm text-blue-700">
                     <strong>Response Time:</strong> I typically respond to messages within 24 hours. 
                     For urgent matters, please call me directly at (555) 123-4567.
                   </p>
