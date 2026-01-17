@@ -24,11 +24,11 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>hello@shawnlegend.com</span>
+                <span>hello@shawn-legend.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
-                <span>123 Main St, City, ST 12345</span>
+                <span>123 Main St, Novi, MI 48167</span>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; 2024 Shawn Legend. All rights reserved.</p>
+          <p>&copy; 2026 Shawn Legend. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -93,10 +93,10 @@ A modern, secure, and responsive website for professional hair stylist Shawn Leg
    
    Update `.env.local` with your actual values:
    ```env
-   DATABASE_URL="./shawn-shin.db"
+   DATABASE_URL="./shawn-legend.db"
    RESEND_API_KEY="your_resend_api_key"
-   FROM_EMAIL="hello@shawnshin.com"
-   TO_EMAIL="contact@shawnshin.com"
+   FROM_EMAIL="hello@shawn-legend.com"
+   TO_EMAIL="contact@shawn-legend.com"
    ARCJET_KEY="your_arcjet_key"
    INNGEST_EVENT_KEY="your_inngest_event_key"
    INNGEST_SIGNING_KEY="your_inngest_signing_key"
@@ -262,9 +262,9 @@ This project is private property of Shawn Legend. All rights reserved.
 ## 📞 Support
 
 For any questions or support:
-- **Email**: hello@shawnshin.com
+- **Email**: hello@shawn-legend.com
 - **Phone**: (555) 123-4567
-- **Location**: 123 Main St, City, State 12345
+- **Location**: 123 Main St, Novi, MI 48167
 
 ---
 
