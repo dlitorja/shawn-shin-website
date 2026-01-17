@@ -30,7 +30,7 @@ export default function Gallery() {
 
         {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          <Button variant="default" className="bg-blue-600 hover:bg-blue-700">
+          <Button variant="default" className="bg-emerald-600 hover:bg-emerald-700">
             All
           </Button>
           <Button variant="outline">
@@ -85,7 +85,7 @@ export default function Gallery() {
 
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-blue-600 rounded-2xl p-8 text-white">
+          <div className="bg-emerald-600 rounded-2xl p-8 text-white">
             <h2 className="text-3xl font-bold mb-4">
               Inspired by What You See?
             </h2>
@@ -93,7 +93,7 @@ export default function Gallery() {
               Let&apos;s discuss how we can create a look that&apos;s perfect for you. 
               Book a consultation today!
             </p>
-            <Button size="lg" variant="secondary" asChild className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button size="lg" variant="secondary" asChild className="bg-emerald-600 hover:bg-emerald-700 text-white">
               <Link href="/contact">Schedule Your Appointment</Link>
             </Button>
           </div>

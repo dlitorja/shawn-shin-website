@@ -20,7 +20,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <Scissors className="h-8 w-8 text-blue-600" />
+              <Scissors className="h-8 w-8 text-emerald-600" />
               <span className="text-xl font-bold text-gray-900">Shawn Legend</span>
             </Link>
           </div>
@@ -30,7 +30,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                className="text-gray-700 hover:text-emerald-600 transition-colors font-medium"
               >
                 {item.name}
               </Link>
@@ -56,7 +56,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md font-medium"
+                  className="block px-3 py-2 text-gray-700 hover:text-emerald-600 hover:bg-gray-50 rounded-md font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}

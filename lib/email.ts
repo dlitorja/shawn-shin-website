@@ -15,7 +15,7 @@ export async function sendContactEmail(data: {
       subject: `New Contact Form Submission from ${data.name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #2563eb; margin-bottom: 20px;">New Contact Form Submission</h2>
+          <h2 style="color: #059669; margin-bottom: 20px;">New Contact Form Submission</h2>
           
           <div style="background: #f9fafb; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
             <h3 style="margin-top: 0;">Contact Information:</h3>
@@ -61,7 +61,7 @@ export async function sendConfirmationEmail(data: {
       subject: 'Thank you for contacting Shawn Legend',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #2563eb; margin-bottom: 20px;">Thank You for Reaching Out!</h2>
+          <h2 style="color: #059669; margin-bottom: 20px;">Thank You for Reaching Out!</h2>
           
           <p>Hi ${data.name},</p>
           
@@ -76,7 +76,7 @@ export async function sendConfirmationEmail(data: {
             </ul>
           </div>
           
-          <div style="background: #2563eb; color: white; padding: 20px; border-radius: 8px; text-align: center;">
+          <div style="background: #059669; color: white; padding: 20px; border-radius: 8px; text-align: center;">
             <h3>Need to Reach Me Sooner?</h3>
             <p>Call me directly at (555) 123-4567 for immediate assistance.</p>
           </div>

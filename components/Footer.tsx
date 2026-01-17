@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Scissors className="h-8 w-8 text-blue-400" />
+              <Scissors className="h-8 w-8 text-emerald-400" />
               <span className="text-xl font-bold">Shawn Legend</span>
             </div>
             <p className="text-gray-400">

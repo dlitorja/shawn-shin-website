@@ -35,7 +35,7 @@ export default function Admin() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Plus className="h-5 w-5 text-blue-600" />
+                  <Plus className="h-5 w-5 text-emerald-600" />
                   <span>Add New Portfolio Item</span>
                 </CardTitle>
               </CardHeader>
@@ -151,7 +151,7 @@ export default function Admin() {
                   </div>
 
                   <div className="flex space-x-4">
-                    <Button type="submit" className="bg-blue-600 hover:bg-blue-700">
+                    <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">
                       Add Portfolio Item
                     </Button>
                     <Button type="button" variant="outline">

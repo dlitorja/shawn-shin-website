@@ -90,7 +90,7 @@ export default function Contact() {
             <Card>
               <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Phone className="h-5 w-5 text-blue-600" />
+              <Phone className="h-5 w-5 text-emerald-600" />
               <span>Phone</span>
                 </CardTitle>
               </CardHeader>
@@ -105,7 +105,7 @@ export default function Contact() {
             <Card>
               <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Mail className="h-5 w-5 text-blue-600" />
+              <Mail className="h-5 w-5 text-emerald-600" />
               <span>Email</span>
                 </CardTitle>
               </CardHeader>
@@ -120,7 +120,7 @@ export default function Contact() {
             <Card>
               <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <MapPin className="h-5 w-5 text-blue-600" />
+              <MapPin className="h-5 w-5 text-emerald-600" />
               <span>Location</span>
                 </CardTitle>
               </CardHeader>
@@ -136,7 +136,7 @@ export default function Contact() {
             <Card>
               <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Clock className="h-5 w-5 text-blue-600" />
+              <Clock className="h-5 w-5 text-emerald-600" />
               <span>Hours</span>
                 </CardTitle>
               </CardHeader>
@@ -284,7 +284,7 @@ export default function Contact() {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -298,8 +298,8 @@ export default function Contact() {
                   </Button>
                 </form>
 
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                  <p className="text-sm text-blue-700">
+                <div className="mt-6 p-4 bg-emerald-50 rounded-lg">
+                  <p className="text-sm text-emerald-700">
                     <strong>Response Time:</strong> I typically respond to messages within 24 hours. 
                     For urgent matters, please call me directly at (555) 123-4567.
                   </p>

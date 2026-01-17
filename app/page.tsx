@@ -7,20 +7,20 @@ export default function Home() {
   return (
     <div className="space-y-20">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-stone-50 to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 tracking-tight">
               <span className="block">Expert Hair Stylist</span>
-              <span className="block text-blue-600">Shawn Legend</span>
+              <span className="block text-emerald-600">Shawn Legend</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
               Over 20 years of experience in cutting, styling, coloring, and transforming hair into works of art.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
-                <Link href="/gallery">View My Work</Link>
-              </Button>
+                <Button size="lg" asChild className="bg-emerald-600 hover:bg-emerald-700">
+                  <Link href="/contact">Schedule Your Consultation</Link>
+                </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/contact">Book Appointment</Link>
               </Button>
@@ -48,13 +48,13 @@ export default function Home() {
                 in timeless principles of hair design. Every client deserves a personalized experience 
                 that leaves them feeling confident and beautiful.
               </p>
-                <Button size="lg" asChild className="bg-blue-600 hover:bg-blue-700">
+              <Button size="lg" asChild className="bg-emerald-600 hover:bg-emerald-700">
                   <Link href="/contact">Schedule Your Consultation</Link>
                 </Button>
             </div>
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-blue-100 to-slate-100 rounded-2xl flex items-center justify-center">
-                <Scissors className="w-32 h-32 text-blue-600" />
+              <div className="aspect-square bg-gradient-to-br from-emerald-100 to-stone-100 rounded-2xl flex items-center justify-center">
+                <Scissors className="w-32 h-32 text-emerald-600" />
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <CardContent className="pt-6">
-                <Scissors className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                <Scissors className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Hair Cutting</h3>
                 <p className="text-gray-600">Precision cuts for all hair types and styles</p>
               </CardContent>
@@ -80,7 +80,7 @@ export default function Home() {
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <CardContent className="pt-6">
-                <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                <Award className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Hair Coloring</h3>
                 <p className="text-gray-600">Expert color application and correction</p>
               </CardContent>
@@ -88,7 +88,7 @@ export default function Home() {
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <CardContent className="pt-6">
-                <Star className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                <Star className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Styling</h3>
                 <p className="text-gray-600">Professional styling for special occasions</p>
               </CardContent>
@@ -96,7 +96,7 @@ export default function Home() {
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <CardContent className="pt-6">
-                <Users className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                <Users className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Consulting</h3>
                 <p className="text-gray-600">Personalized hair care consultations</p>
               </CardContent>
@@ -106,20 +106,20 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
+      <section className="py-20 bg-emerald-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-6">
             <h2 className="text-4xl font-bold text-white">
               Ready for Your Transformation?
             </h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-xl text-emerald-100 max-w-2xl mx-auto">
               Let&apos;s work together to create the perfect look that reflects your style and personality.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
                 <Link href="/gallery">View Portfolio</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600" asChild>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-emerald-600" asChild>
                 <Link href="/contact">Contact Me</Link>
               </Button>
             </div>
